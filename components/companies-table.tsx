@@ -26,14 +26,14 @@ export function CompaniesTable() {
   const [selectedSector, setSelectedSector] = useState<"all"|"Fintech"|"HealthTech"|"CleanTech"|"EdTech"|"AgTech"|"Logistics"|"E-commerce">("all")
   const [selectedStage, setSelectedStage] = useState<"all"|"Series A"|"Series B"|"Series C"|"Series D"|"Growth">("all")
   
-  const {data:companies, isLoading, isFetching, isSuccess, isError, refetch} = useGetCompaniesQuery({
+  const {data:companies, isLoading, isFetching, refetch} = useGetCompaniesQuery({
     sector: selectedSector === "all" ? "" : selectedSector,
     stage: selectedStage === "all" ? "" : selectedStage
   })
 
   useEffect(() => {
     refetch()
-  }, [selectedSector, selectedStage])
+  }, [selectedSector, selectedStage, refetch])
 
   return (
     <div className="p-6">

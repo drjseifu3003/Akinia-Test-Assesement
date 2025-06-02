@@ -3,11 +3,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, TrendingUp, Users, Globe, BarChart3, Smartphone, Truck, Heart, Zap, Sprout, Calendar, ExternalLink, Building, Book, LeafyGreen, Leaf } from "lucide-react"
+import { ChevronLeft, ChevronRight, TrendingUp, Users, Globe, BarChart3, Smartphone, Truck, Heart, Zap, Sprout, Calendar, ExternalLink, Book, Leaf } from "lucide-react"
 import Image from "next/image"
 import { JSX, useState } from "react"
 import { useGetNewsQuery } from "@/store/app-api"
 import { Skeleton } from "./ui/skeleton"
+import { News } from "@/models"
 
 
 const industryReports = [
@@ -73,7 +74,7 @@ const promoCards = [
 ]
 
 const Dashboard = () => {
-  const { data, isLoading, isFetching} = useGetNewsQuery({})
+  const { data, isLoading} = useGetNewsQuery({})
 
   const [currentPromo, setCurrentPromo] = useState(0)
 
@@ -212,25 +213,24 @@ const Dashboard = () => {
             ) : (
               // Actual content
               <div className="space-y-4">
-                {data?.map((item: any) => (
+                {data?.map((item: News) => (
                   <Card key={item.id} className="hover:shadow-md transition-shadow">
                     <CardContent className="p-4">
                       <div className="flex items-start space-x-4">
                         <div className="flex-shrink-0">
                           <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
-                            {item.icon || getSectorIcon(item.sector)}
+                            {getSectorIcon(item.sector ?? "")}
                           </div>
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-start justify-between mb-2">
                             <h3 className="font-medium text-gray-900 leading-tight">{item.title}</h3>
-                            <span className="text-lg ml-2">{item.country}</span>
                           </div>
 
                           <div className="flex items-center space-x-4 text-sm text-gray-500 mb-3">
                             <div className="flex items-center space-x-1">
                               <Calendar className="h-3 w-3" />
-                              <span>{formatDate(item.date)}</span>
+                              <span>{formatDate(item.date ?? new Date().toDateString())}</span>
                             </div>
                             <div className="flex items-center space-x-1">
                               <ExternalLink className="h-3 w-3" />
@@ -239,7 +239,7 @@ const Dashboard = () => {
                           </div>
 
                           <div className="flex items-center space-x-2">
-                            <Badge className={`text-xs ${getSectorColor(item.sector)}`}>{item.sector}</Badge>
+                            <Badge className={`text-xs ${getSectorColor(item.sector ?? "")}`}>{item.sector}</Badge>
                           </div>
                         </div>
                       </div>

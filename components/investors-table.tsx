@@ -32,7 +32,7 @@ export function InvestorsTable() {
 
   useEffect(() => {
     refetch()
-  }, [selectedSector])
+  }, [selectedSector, refetch])
 
   return (
     <div className="p-6">
@@ -117,16 +117,16 @@ export function InvestorsTable() {
                   <TableCell>{investor.aum_m}</TableCell>
                   <TableCell className="space-x-2">
                     {
-                      investor.focus_sectors?.split(',').map((sector) => (
-                        <Badge>{sector}</Badge>
+                      investor.focus_sectors?.split(',').map((sector, index) => (
+                        <Badge key={index}>{sector}</Badge>
                       ))
                     }
                     
                   </TableCell>
                   <TableCell className="space-x-2">
                     {
-                      investor.investor_portfolio_companies?.map((company) => (
-                        <Badge>{company.company.name}</Badge>
+                      investor.investor_portfolio_companies?.map((company, index) => (
+                        <Badge key={index}>{company.company.name}</Badge>
                       ))
                     }
                     

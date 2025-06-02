@@ -1,6 +1,5 @@
-import { Search, ChevronDown, Settings, LogOut } from "lucide-react"
+import { Search, Settings, LogOut } from "lucide-react"
 import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { Button } from "./ui/button"
 import Link from "next/link"

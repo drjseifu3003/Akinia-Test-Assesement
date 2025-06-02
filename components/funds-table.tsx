@@ -33,7 +33,7 @@ export function FundsTable() {
 
   useEffect(() => {
     refetch()
-  }, [selectedInvestementFocus, selectedStatus])
+  }, [selectedInvestementFocus, selectedStatus, refetch])
 
   return (
     <div className="p-6">

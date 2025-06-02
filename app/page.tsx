@@ -67,7 +67,7 @@ export default function LandingPage() {
                     🌍 Fresh insights into African PE deals, exits, and investor rankings
                   </Badge>
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-gray-900">
-                    Africa's leading private market intelligence platform
+                    Africa&apos;s leading private market intelligence platform
                   </h1>
                   <p className="max-w-[600px] text-gray-600 md:text-xl">
                     Building the largest network to gather the most comprehensive and exclusive information on African
@@ -146,7 +146,7 @@ export default function LandingPage() {
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-gray-900">More African Opportunities</h3>
                   <p className="text-gray-600">
-                    Discover untapped investment opportunities across Africa's fastest-growing markets. Our
+                    Discover untapped investment opportunities across Africa&apos;s fastest-growing markets. Our
                     comprehensive database covers everything from Lagos startups to Johannesburg corporates, ensuring
                     you never miss a deal.
                   </p>
@@ -244,7 +244,7 @@ export default function LandingPage() {
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-gray-900">Venture Capital</h3>
                   <p className="text-gray-600 mb-4">
-                    Discover Africa's most promising startups and emerging growth companies
+                    Discover Africa&apos;s most promising startups and emerging growth companies
                   </p>
                   <Link href="#" className="text-primary hover:text-primary/80 font-medium inline-flex items-center">
                     Learn more <ArrowRight className="ml-1 h-4 w-4" />
@@ -264,7 +264,7 @@ export default function LandingPage() {
               </h2>
               <p className="mx-auto max-w-[800px] text-gray-600 md:text-xl">
                 Combining local African expertise with advanced technology to provide the most comprehensive
-                intelligence on Africa's private markets
+                intelligence on Africa&apos;s private markets
               </p>
             </div>
 
@@ -388,7 +388,7 @@ export default function LandingPage() {
                     Take a look for yourselves
                   </h2>
                   <p className="max-w-[600px] text-gray-600 md:text-xl">
-                    Take a virtual tour of our platform to get a taste of how we can revolutionize your team's research
+                    Take a virtual tour of our platform to get a taste of how we can revolutionize your team&apos;s research
                     and deal sourcing workflow.
                   </p>
                 </div>
@@ -407,7 +407,7 @@ export default function LandingPage() {
           <div className="container px-4 md:px-6">
             <div className="text-center space-y-4">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gray-900">
-                Ready to unlock Africa's potential?
+                Ready to unlock Africa&apos;s potential?
               </h2>
               <p className="mx-auto max-w-[600px] text-gray-600 md:text-xl">
                 Join the leading investors and advisors who trust Akinia for African market intelligence and deal

@@ -5,9 +5,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
+import { isErrored } from "stream"
 
 const  LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -36,6 +37,12 @@ const  LoginForm = () => {
         setIsLoading(false);
       }
     };
+
+    useEffect(() => {
+      if(error) {
+        alert(error)
+      }
+    }, [error])
 
   return (
     <div className="flex flex-col">
@@ -80,7 +87,7 @@ const  LoginForm = () => {
               </Button>
             </form>
             <div className="text-center text-sm">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link href="/auth/sign-up" className="text-primary hover:underline">
                 Start your free trial
               </Link>
