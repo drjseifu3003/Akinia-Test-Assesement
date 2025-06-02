@@ -92,7 +92,7 @@ const LoginForm = () => {
             </form>
             <div className="text-center text-sm">
               Don&apos;t have an account?{" "}
-              <Link href="/auth/sign-up" className="text-primary hover:underline">
+              <Link href="/auth/signup" className="text-primary hover:underline">
                 Start your free trial
               </Link>
             </div>
