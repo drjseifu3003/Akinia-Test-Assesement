@@ -1,4 +1,4 @@
-# 💼 Investment & Portfolio Management Platform
+# 💼 Akinia Test Assesement
 
 A modern web application for managing investors, companies, funds, and related news. Built using **Next.js App Router**, **Supabase**, and **RTK Query**.
 
@@ -31,74 +31,77 @@ A modern web application for managing investors, companies, funds, and related n
 
 ## 🏗️ Project Structure
 
+```bash
+📁 Akinia Test Assesment/
 ├── app/
-│ └── api/ # Backend API routes
+│   ├── api/
+│   │   ├── companies/
+│   │   ├── investors/
+│   │   ├── contacts/
+│   │   ├── funds/
+│   │   └── news/
+│   └── page.tsx
+├── components/
+│   └── ui/               # Reusable UI components
 ├── lib/
-│ └── database.types.ts # Supabase generated types
-│ └── filters.ts # Query filtering utility
+│   ├── database.types.ts # Supabase-generated TypeScript types
+│   ├── applySupabaseFilter.ts        # Query filtering utility
+│   └── supabase       # Supabase client setup
 ├── store/
-│ └── api.ts # RTK Query base API setup
+│   ├── api-api.ts            # RTK Query base API configuration
+│   └── app-store.ts           # Redux Store
 ├── supabase/
-│ └── migrations/ # SQL migration files
-│ └── schema.sql # Full schema definition
-
-yaml
-Copy
-Edit
-
----
+│   ├── migrations/       # SQL migration files
+```
 
 ## 🧪 Getting Started
+
+Follow these steps to run the project locally.
 
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/your-username/investment-platform.git
-cd investment-platform
-npm install
-2. Setup Supabase
-Ensure you have the Supabase CLI installed.
+git clone https://github.com/drjseifu3003/Akinia-Test-Assesement.git
+npm install --force
+```
 
-bash
-Copy
-Edit
-npx supabase init
-Link your project:
+### 2. Configure Environment Variables
 
-bash
-Copy
-Edit
-supabase link --project-ref your-project-id
-Push schema to Supabase:
+Create a `.env.local` file at the project root:
 
-bash
-Copy
-Edit
-supabase db push
-3. Generate Types
-bash
-Copy
-Edit
+```bash
+NEXT_PUBLIC_SUPABASE_URL=https://<project-ref>.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<your-anon-key>
+```
+
+> You can find these keys in **Supabase → Project Settings → API**.
+
+### 3. Initialize & Link Supabase
+
+```bash
+npx supabase init                      # creates the supabase/ folder
+supabase link --project-ref <project-ref>   # link to your cloud project
+```
+
+### 4. Apply Migrations & Seed Data
+
+```bash
+supabase db push                       # runs SQL in supabase/migrations
+```
+
+### 5. Generate TypeScript Types (optional but recommended)
+
+```bash
 npx supabase gen types typescript --local > lib/database.types.ts
-4. Run Dev Server
-bash
-Copy
-Edit
-npm run dev
-🔄 Example API Query
-Get companies with nested relations (e.g., primary investor and CEO contact):
+```
 
-ts
-Copy
-Edit
-const { data } = await supabase
-  .from('companies')
-  .select(`
-    *,
-    primary_investor:primary_investor_id (
-      id, name
-    ),
-    ceo_contact:ceo_contact_id (
-      id, name, email
-    )
-  `)
+### 6. Run the Development Server
+
+```bash
+npm run dev
+```
+
+Visit **http://localhost:3000** to see the app running.
+
+> **Tip:** If you ever need a clean slate locally, run  
+> `supabase db reset --force` (destroys data, then reapplies migrations).
