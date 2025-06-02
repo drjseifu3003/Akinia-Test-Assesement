@@ -8,46 +8,39 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
-import { isErrored } from "stream"
+import { Eye, EyeOff } from "lucide-react"
 
-const  LoginForm = () => {
+const LoginForm = () => {
   const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState<string | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const router = useRouter();
-  
-    const handleLogin = async (e: React.FormEvent) => {
-      e.preventDefault();
-      const supabase = createClient();
-      setIsLoading(true);
-      setError(null);
-  
-      try {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-        if (error) throw error;
-        // Update this route to redirect to an authenticated route. The user already has an active session.
-        router.push("/dashboard");
-      } catch (error: unknown) {
-        setError(error instanceof Error ? error.message : "An error occurred");
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
-    useEffect(() => {
-      if(error) {
-        alert(error)
-      }
-    }, [error])
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const supabase = createClient();
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      router.push("/dashboard");
+    } catch (error: unknown) {
+      setError(error instanceof Error ? error.message : "An error occurred");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (error) alert(error);
+  }, [error]);
 
   return (
     <div className="flex flex-col">
-      {/* Header */}
-
       <main className="flex-1 flex items-center justify-center py-12">
         <Card className="w-full max-w-md">
           <CardHeader className="space-y-1">
@@ -69,20 +62,31 @@ const  LoginForm = () => {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
-                <Input 
-                id="password"
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-2 flex items-center text-muted-foreground"
+                    tabIndex={-1}
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+                </div>
               </div>
               <div className="flex items-center justify-between">
                 <Link href="/auth/forgot-password" className="text-sm text-primary hover:underline">
                   Forgot password?
                 </Link>
               </div>
-              <Button  type="submit" className="w-full bg-primary hover:bg-primary/90 text-white" disabled={isLoading}>
+              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white" disabled={isLoading}>
                 {isLoading ? "Submitting..." : "Sign In"}
               </Button>
             </form>
@@ -96,7 +100,7 @@ const  LoginForm = () => {
         </Card>
       </main>
     </div>
-  )
+  );
 }
 
-export default LoginForm
+export default LoginForm;
