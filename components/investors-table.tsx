@@ -13,7 +13,7 @@ import { Label } from "./ui/label"
 function SkeletonRow() {
   return (
     <TableRow>
-      {Array.from({ length: 6 }).map((_, idx) => (
+      {Array.from({ length: 7 }).map((_, idx) => (
         <TableCell key={idx}>
           <div className="h-4 bg-muted rounded animate-pulse w-full max-w-[120px]" />
         </TableCell>
@@ -82,6 +82,7 @@ export function InvestorsTable() {
                 <TableHead>Founded</TableHead>
                 <TableHead>AUM</TableHead>
                 <TableHead>Focus Sectors</TableHead>
+                <TableHead>Portfolio Companies</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -122,10 +123,18 @@ export function InvestorsTable() {
                     }
                     
                   </TableCell>
+                  <TableCell className="space-x-2">
+                    {
+                      investor.investor_portfolio_companies?.map((company) => (
+                        <Badge>{company.company.name}</Badge>
+                      ))
+                    }
+                    
+                  </TableCell>
                 </TableRow>
               ))) : (
                 <TableRow>
-                  <TableCell colSpan={6} className="text-center py-6">
+                  <TableCell colSpan={7} className="text-center py-6">
                     <div className="text-sm text-muted-foreground">No Investor found</div>
                   </TableCell>
                 </TableRow>

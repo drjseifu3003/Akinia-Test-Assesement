@@ -17,7 +17,7 @@ export interface Investor {
   aum_m?: number | null;
   focus_sectors?: string | null;
   managing_director?: Contact | null;
-  portfolio_companies?: Company[] | null;
+  investor_portfolio_companies?: {company:Company}[] | null;
   funds?: Fund[] | null;
 }
 
