@@ -1,19 +1,15 @@
-type FilterableQuery<T> = {
-  ilike: (column: keyof T | string, pattern: string) => FilterableQuery<T>;
-  eq: (column: keyof T | string, value: unknown) => FilterableQuery<T>;
-};
-
+// lib/applyFilters.ts
 export function applyFilters<T>(
-  query: FilterableQuery<T>,
+  query: T,
   filters: Record<string, unknown>
-): FilterableQuery<T> {
+): T {
   for (const [key, value] of Object.entries(filters)) {
     if (value === undefined || value === null || value === '') continue;
 
     if (typeof value === 'string') {
-      query = query.ilike(key, `%${value}%`);
+      query = (query as any).ilike(key, `%${value}%`);
     } else {
-      query = query.eq(key, value);
+      query = (query as any).eq(key, value);
     }
   }
 
