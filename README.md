@@ -2,6 +2,9 @@
 
 A modern web application for managing investors, companies, funds, and related news. Built using **Next.js App Router**, **Supabase**, and **RTK Query**.
 
+
+
+
 ---
 
 ## 🚀 Tech Stack
